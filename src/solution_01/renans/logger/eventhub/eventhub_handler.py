@@ -10,21 +10,13 @@ class EventhubHandler(IHandler):
 
     def __init__(
             self,
-            mailhost: tp.Union[str, tp.Tuple[str, int]],
-            fromaddr: str,
-            toaddrs: tp.List[str],
-            subject: str,
-            credentials: tp.Optional[tp.Tuple[str, str]] = None,
-            secure: tp.Union[tp.Tuple[str], tp.Tuple[str, str], None] = None,
-            timeout: float = 5.0) -> None:
+            eventhub_connection_string: str,
+            eventhub_name: str,
+            application_name: str) -> None:
         super(EventhubHandler, self).__init__()
-        self.mailhost = mailhost
-        self.fromaddr = fromaddr
-        self.toaddrs = toaddrs
-        self.subject = subject
-        self.credentials = credentials
-        self.secure = secure
-        self.timeout = timeout
+        self.eventhub_connection_string = eventhub_connection_string
+        self.eventhub_name = eventhub_name
+        self.application_name = application_name
 
     def emit(self, record: lg.LogRecord) -> None:
         raise NotImplementedError()
