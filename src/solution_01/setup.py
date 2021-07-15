@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import pathlib as pl
 
 meta = dict()
-exec(open(pl.Path('namespace', 'package', 'meta.py')).read(), meta)
+exec(open(pl.Path('renans', 'logger', 'meta.py')).read(), meta)
 
 author = meta['__author__']
 author_email = meta['__email__']
