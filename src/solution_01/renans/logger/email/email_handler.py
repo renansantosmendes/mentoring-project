@@ -3,6 +3,7 @@ __version__ = '0.1.0'
 
 import typing as tp
 import logging as lg
+from logging.handlers import SMTPHandler
 from renans.logger.interfaces.i_handler import IHandler
 
 
@@ -25,6 +26,15 @@ class EmailHandler(IHandler):
         self.credentials = credentials
         self.secure = secure
         self.timeout = timeout
+        self._smtp_handler = SMTPHandler(
+            self.mailhost,
+            self.fromaddr,
+            self.toaddrs,
+            self.subject,
+            self.credentials,
+            self.secure,
+            self.timeout,
+        )
 
     def emit(self, record: lg.LogRecord) -> None:
-        raise NotImplementedError()
+        self._smtp_handler.emit(record)
